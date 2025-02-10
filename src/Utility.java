@@ -17,13 +17,6 @@ public class Utility {
         System.out.println("7. Exit");
         System.out.println("-----------------------------------------");
     }
-    public void bankMenu(String optionName){
-        System.out.println("\n>>>>>>>>>>>>>>>>>>>> "+ optionName +" <<<<<<<<<<<<<<<<<<<<");
-        System.out.println("1. Checking Account ");
-        System.out.println("2. Saving Account ");
-        System.out.println("3. Back Account ");
-        System.out.println("==============================================================");
-    }
 
     public String userName(){
         String userName;
@@ -43,9 +36,10 @@ public class Utility {
         while (true){
             System.out.print("Year of Birth(dd-mm-yyyy): ");
             userBirthdate = scanner.nextLine();
-            if (userBirthdate != null){
-                break; // validate year
+            if (userBirthdate.matches("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$")){
+                break;
             }
+            System.out.println("Wrong format date!!");
         }
         return userBirthdate;
     }
@@ -53,7 +47,7 @@ public class Utility {
     public String userGender(){
         String gender;
         while (true){
-            System.out.print("Enter your gender: ");
+            System.out.print("Enter your gender(Male/Female): ");
             gender = scanner.nextLine();
             if(gender.toLowerCase().equals("female") || gender.toLowerCase().equals("male")){
                 break;
@@ -66,7 +60,7 @@ public class Utility {
     public String phoneNumber(){
         String phoneNumber;
         while (true){
-            System.out.print("Phone Number: ");
+            System.out.print("Phone Number(9 digit): ");
             phoneNumber = scanner.nextLine();
             if (phoneNumber.matches("^[0-9]{8,11}$")){
                 break;
@@ -74,9 +68,5 @@ public class Utility {
             System.out.println("Invalid phone number");
         }
         return phoneNumber;
-    }
-
-    public void CreateCheckingAcc(){
-
     }
 }

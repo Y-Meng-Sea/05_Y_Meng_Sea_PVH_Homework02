@@ -29,7 +29,7 @@ public class Main {
                         System.out.println("\n>>>>>>>>>>>>>>>>>>>> Create Account <<<<<<<<<<<<<<<<<<<<");
                         System.out.println("1. Checking Account ");
                         System.out.println("2. Saving Account ");
-                        System.out.println("3. Back Account ");
+                        System.out.println("3. Back");
                         System.out.println("==============================================================");
                         System.out.print("=> chose an option: ");
                         useroption = scanner.nextLine();
@@ -48,7 +48,7 @@ public class Main {
                         checkingAcc.setUserName(userName);
                         checkingAcc.setUserAge(userAge);
                         checkingAcc.setUserGender(userGender);
-                        checkingAcc.setUserGender(userPhoneNum);
+                        checkingAcc.setUserPhoneNumber(userPhoneNum);
                         System.out.println("Creating account successfully!");
                     } else if (useroption.equals("2")) {
                         System.out.println("Creating Saving account");
@@ -61,7 +61,7 @@ public class Main {
                         savingAccount.setUserName(userName);
                         savingAccount.setUserAge(userAge);
                         savingAccount.setUserGender(userGender);
-                        savingAccount.setUserGender(userPhoneNum);
+                        savingAccount.setUserPhoneNumber(userPhoneNum);
                         System.out.println("Creating account successfully!");
                     } else if (useroption.equals("3")) {
                         break;
@@ -73,7 +73,7 @@ public class Main {
                         System.out.println("\n>>>>>>>>>>>>>>>>>>>> Deposit Money <<<<<<<<<<<<<<<<<<<<");
                         System.out.println("1. Checking Account ");
                         System.out.println("2. Saving Account ");
-                        System.out.println("3. Back Account ");
+                        System.out.println("3. Back");
                         System.out.println("==============================================================");
                         System.out.print("=> chose an option: ");
                         useroption = scanner.nextLine();
@@ -108,6 +108,7 @@ public class Main {
                             if (depositAmount.matches("^\\d+(\\.\\d+)?$")){
                                 break;
                             }
+
                             System.out.println("Not a number");
                         }
                         double toDouble = Double.parseDouble(depositAmount);
@@ -127,7 +128,7 @@ public class Main {
                         System.out.println("\n>>>>>>>>>>>>>>>>>>>> Withdraw Money <<<<<<<<<<<<<<<<<<<<");
                         System.out.println("1. Checking Account ");
                         System.out.println("2. Saving Account ");
-                        System.out.println("3. Back Account ");
+                        System.out.println("3. Back");
                         System.out.println("==============================================================");
                         System.out.print("=> chose an option: ");
                         useroption = scanner.nextLine();
@@ -180,7 +181,7 @@ public class Main {
                         System.out.println("\n>>>>>>>>>>>>>>>>>>>> Transfer Money <<<<<<<<<<<<<<<<<<<<");
                         System.out.println("1. Checking Account -> Saving Account");
                         System.out.println("2. Saving Account -> Checking Account");
-                        System.out.println("3. Back ");
+                        System.out.println("3. Back");
                         System.out.println("==============================================================");
                         System.out.print("=> chose an option: ");
                         useroption = scanner.nextLine();
@@ -233,25 +234,17 @@ public class Main {
                         System.out.println("\n>>>>>>>>>>>>>>>>>>>> Display Account Info <<<<<<<<<<<<<<<<<<<<");
                         System.out.println("1. Checking Account ");
                         System.out.println("2. Saving Account ");
-                        System.out.println("3. Back ");
+                        System.out.println("3. Back");
                         System.out.print("=> Choose an option: ");
                         useroption = scanner.nextLine();
                         if(useroption.matches("^[1-3]$")) {
                             if (useroption.equals("3")) break;
                             if (useroption.equals("1")) {
                                 System.out.println("Checking Account Info:");
-                                System.out.println("Name: " + checkingAcc.getUserName());
-                                System.out.println("Age: " + checkingAcc.getUserAge());
-                                System.out.println("Gender: " + checkingAcc.getUserGender());
-                                System.out.println("Phone: " + checkingAcc.getUserPhoneNumber());
-                                System.out.println("Balance: " + checkingAcc.getBalance());
+                                checkingAcc.displayAccountInfo();
                             } else {
                                 System.out.println("Saving Account Info:");
-                                System.out.println("Name: " + savingAccount.getUserName());
-                                System.out.println("Age: " + savingAccount.getUserAge());
-                                System.out.println("Gender: " + savingAccount.getUserGender());
-                                System.out.println("Phone: " + savingAccount.getUserPhoneNumber());
-                                System.out.println("Balance: " + savingAccount.getBalance());
+                                savingAccount.displayAccountInfo();
                             }
                         } else {
                             System.out.println("Invalid option");
@@ -259,6 +252,7 @@ public class Main {
                     }
                     break;
                 case 6:
+                    String comfireDel ;
                     while (true) {
                         System.out.println("\n>>>>>>>>>>>>>>>>>>>> Delete Account <<<<<<<<<<<<<<<<<<<<");
                         System.out.println("1. Checking Account ");
@@ -269,19 +263,32 @@ public class Main {
                         if(useroption.matches("^[1-3]$")) {
                             if (useroption.equals("3")) break;
                             if (useroption.equals("1")) {
-                                checkingAcc.setUserName(null);
-                                checkingAcc.setUserAge(null);
-                                checkingAcc.setUserGender(null);
-                                checkingAcc.setUserPhoneNumber(null);
-                                checkingAcc.setBalance(0);
-                                System.out.println("Checking account deleted.");
+                                System.out.print("Are you sure want to delete this account ?(y/n)");
+                                comfireDel = scanner.nextLine();
+                                if(comfireDel.toLowerCase().equals("y")){
+                                    checkingAcc.setUserName("User Has Been delete");
+                                    checkingAcc.setUserAge("User Has Been delete");
+                                    checkingAcc.setUserGender("User Has Been delete");
+                                    checkingAcc.setUserPhoneNumber("User Has Been delete");
+                                    checkingAcc.setBalance(0);
+                                    System.out.println("Checking account deleted.");
+                                }else{
+                                    break;
+                                }
+
                             } else {
-                                savingAccount.setUserName(null);
-                                savingAccount.setUserAge(null);
-                                savingAccount.setUserGender(null);
-                                savingAccount.setUserPhoneNumber(null);
-                                savingAccount.setBalance(0);
-                                System.out.println("Saving account deleted.");
+                                System.out.print("Are you sure want to delete this account ?(y/n)");
+                                comfireDel = scanner.nextLine();
+                                if(comfireDel.toLowerCase().equals("y")){
+                                    savingAccount.setUserName("User Has Been delete");
+                                    savingAccount.setUserAge("User Has Been delete");
+                                    savingAccount.setUserGender("User Has Been delete");
+                                    savingAccount.setUserPhoneNumber("User Has Been delete");
+                                    savingAccount.setBalance(0);
+                                    System.out.println("Saving account deleted.");
+                                }else{
+                                    break;
+                                }
                             }
                         } else {
                             System.out.println("Invalid option");

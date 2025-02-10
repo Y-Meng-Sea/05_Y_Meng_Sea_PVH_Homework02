@@ -12,8 +12,9 @@ public class SavingAccount implements Account {
 
     @Override
     public void withdraw(double amount) {
-        if (amount > balance) {
-            System.out.println("Cannot withdraw.");
+        double minBalance =0.2;
+        if (balance - amount <minBalance) {
+            System.out.println("Cannot withdraw. it must be 20% remaining in saving account");
         } else {
             balance -= amount;
         }
@@ -22,19 +23,23 @@ public class SavingAccount implements Account {
 
     @Override
     public void transfer(double amount, Account targetAccount) {
-        if(amount > balance){
-            System.out.println("Cannot Transfer.");
+        double minBalance = 0.2;
+        if(balance - amount < minBalance){
+            System.out.println("Cannot transfer. it must be 20% remaining in saving account");
         }else {
             this.withdraw(amount);
             targetAccount.deposit(amount);
-            System.out.println("Transfer successfully");
-            System.out.println("Total balance remaining: " + this.balance);
         }
     }
 
     @Override
     public void displayAccountInfo() {
-
+        System.out.println("Checking Account Info:");
+        System.out.println("Name: " + this.userName);
+        System.out.println("Age: " + this.userAge);
+        System.out.println("Gender: " + this.userGender);
+        System.out.println("Phone: " + this.userPhoneNumber);
+        System.out.println("Balance: " + this.balance);
     }
 
     // setter and getter method

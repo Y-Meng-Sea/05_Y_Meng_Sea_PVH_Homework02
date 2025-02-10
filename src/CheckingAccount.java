@@ -34,7 +34,12 @@ public class CheckingAccount implements Account {
 
     @Override
     public void displayAccountInfo() {
-
+        System.out.println("Checking Account Info:");
+        System.out.println("Name: " + this.userName);
+        System.out.println("Age: " + this.userAge);
+        System.out.println("Gender: " + this.userGender);
+        System.out.println("Phone: " + this.userPhoneNumber);
+        System.out.println("Balance: " + this.balance);
     }
     // setter and getter method
 
