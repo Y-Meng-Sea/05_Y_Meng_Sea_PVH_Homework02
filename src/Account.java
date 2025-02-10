@@ -1,6 +1,6 @@
 public interface Account {
-    double deposit(double amount);
-    double withdraw(double amount);
-    double transfer(double amount, Account targetAccount);
+    void deposit(double amount);
+    void withdraw(double amount);
+    void transfer(double amount, Account targetAccount);
     void displayAccountInfo();
 }

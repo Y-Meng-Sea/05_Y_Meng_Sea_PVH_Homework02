@@ -25,7 +25,7 @@ public class Utility {
         System.out.println("==============================================================");
     }
 
-    public String UserName(){
+    public String userName(){
         String userName;
         while (true){
             System.out.print("Enter User Name: ");
@@ -68,7 +68,7 @@ public class Utility {
         while (true){
             System.out.print("Phone Number: ");
             phoneNumber = scanner.nextLine();
-            if (phoneNumber.matches("^[0-9]{10,11}$")){
+            if (phoneNumber.matches("^[0-9]{8,11}$")){
                 break;
             }
             System.out.println("Invalid phone number");
