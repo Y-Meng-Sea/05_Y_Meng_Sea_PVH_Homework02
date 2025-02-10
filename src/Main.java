@@ -94,8 +94,11 @@ public class Main {
                         }
                         double toDouble = Double.parseDouble(depositAmount);
                         checkingAcc.deposit(toDouble);
-                        System.out.println("Balance to deposit: " + toDouble);
-                        System.out.println("Total balance: " + checkingAcc.getBalance());
+                        System.out.println("\t\t\t\t Checking Account ");
+                        System.out.println("Received    : \t\t\t" + "$ "+toDouble);
+                        System.out.println("Total amount: \t\t\t" + "$ "+checkingAcc.getBalance());
+                        System.out.println("==============================================================");
+                        System.out.println("\n Deposit Successful");
 
                     } else if (useroption.equals("2")) {
                         String depositAmount;
@@ -109,8 +112,11 @@ public class Main {
                         }
                         double toDouble = Double.parseDouble(depositAmount);
                         savingAccount.deposit(toDouble);
-                        System.out.println("Balance to deposit: " + toDouble);
-                        System.out.println("Total balance: " + savingAccount.getBalance());
+                        System.out.println("\t\t\t\t Checking Account ");
+                        System.out.println("Received    : \t\t\t" + "$ "+toDouble);
+                        System.out.println("Total amount: \t\t\t" + "$ "+savingAccount.getBalance());
+                        System.out.println("==============================================================");
+                        System.out.println("\n Deposit Successful");
                     } else if (useroption.equals("3")) {
                         break;
                     }
@@ -133,7 +139,7 @@ public class Main {
                     if (useroption.equals("1")){
                         String withdrawAmount;
                         while (true){
-                            System.out.print("Enter money to deposit: ");
+                            System.out.print("Enter money to withdrew: ");
                             withdrawAmount = scanner.nextLine();
                             if (withdrawAmount.matches("^\\d+(\\.\\d+)?$")){
                                 break;
@@ -142,13 +148,16 @@ public class Main {
                         }
                         double toDouble = Double.parseDouble(withdrawAmount);
                         checkingAcc.withdraw(toDouble);
-                        System.out.println("Balance to withdraw: " + toDouble);
-                        System.out.println("Total balance: " + checkingAcc.getBalance());
+                        System.out.println("\t\t\t\t Checking Account ");
+                        System.out.println("Withdrew    : \t\t\t" + "$ "+toDouble);
+                        System.out.println("Total amount: \t\t\t" + "$ "+checkingAcc.getBalance());
+                        System.out.println("==============================================================");
+                        System.out.println("\n Withdrew Successful");
 
                     } else if (useroption.equals("2")) {
                         String withdrawAmount;
                         while (true){
-                            System.out.print("Enter money to deposit: ");
+                            System.out.print("Enter money to withdrew: ");
                             withdrawAmount = scanner.nextLine();
                             if (withdrawAmount.matches("^\\d+(\\.\\d+)?$")){
                                 break;
@@ -157,26 +166,127 @@ public class Main {
                         }
                         double toDouble = Double.parseDouble(withdrawAmount);
                         savingAccount.withdraw(toDouble);
-                        System.out.println("Balance to withdraw: " + toDouble);
-                        System.out.println("Total balance: " + savingAccount.getBalance());
+                        System.out.println("\t\t\t\t Saving Account ");
+                        System.out.println("Withdrew    : \t\t\t" + "$ "+toDouble);
+                        System.out.println("Total amount: \t\t\t" + "$ "+savingAccount.getBalance());
+                        System.out.println("==============================================================");
+                        System.out.println("\n Withdrew Successful");
                     } else if (useroption.equals("3")) {
                         break;
                     }
                     break;
                 case 4:
-                    util.bankMenu("Transfer Money");
-                    System.out.println("Enter to continue");
-                    System.console().readLine();
+                    while (true){
+                        System.out.println("\n>>>>>>>>>>>>>>>>>>>> Transfer Money <<<<<<<<<<<<<<<<<<<<");
+                        System.out.println("1. Checking Account -> Saving Account");
+                        System.out.println("2. Saving Account -> Checking Account");
+                        System.out.println("3. Back ");
+                        System.out.println("==============================================================");
+                        System.out.print("=> chose an option: ");
+                        useroption = scanner.nextLine();
+                        if(useroption.matches("^[1-3]$")){
+                            break;
+                        }
+                        System.out.println("invalid option");
+                    }
+                    if (useroption.equals("1")){
+                        String withdrawAmount;
+                        while (true){
+                            System.out.print("Enter money to withdrew: ");
+                            withdrawAmount = scanner.nextLine();
+                            if (withdrawAmount.matches("^\\d+(\\.\\d+)?$")){
+                                break;
+                            }
+                            System.out.println("Not a number");
+                        }
+                        double toDouble = Double.parseDouble(withdrawAmount);
+                        checkingAcc.transfer(toDouble,savingAccount);
+                        System.out.println(">>>>>>>>>>>>>>>>>>>>   Transfer Moneys   <<<<<<<<<<<<<<<<<<<<\n");
+                        System.out.println("Transferred :                          :"+"$ "+toDouble);
+                        System.out.println("From        :Checking Account with Name: " + checkingAcc.getUserName());
+                        System.out.println("To          :Saving Account with Name  : "+ savingAccount.getUserName());
+                        System.out.println("Total Remain:                          : "+"$ "+checkingAcc.getBalance());
+
+                    } else if (useroption.equals("2")) {
+                        String withdrawAmount;
+                        while (true){
+                            System.out.print("Enter money to withdrew: ");
+                            withdrawAmount = scanner.nextLine();
+                            if (withdrawAmount.matches("^\\d+(\\.\\d+)?$")){
+                                break;
+                            }
+                            System.out.println("Not a number");
+                        }
+                        double toDouble = Double.parseDouble(withdrawAmount);
+                        savingAccount.transfer(toDouble,checkingAcc);
+                        System.out.println(">>>>>>>>>>>>>>>>>>>>   Transfer Moneys   <<<<<<<<<<<<<<<<<<<<\n");
+                        System.out.println("Transferred :                          :"+"$ "+toDouble);
+                        System.out.println("From        :Saving Account with Name  : "+ savingAccount.getUserName());
+                        System.out.println("To          :Checking Account with Name: " + checkingAcc.getUserName());
+                        System.out.println("Total Remain:                          : "+"$ "+savingAccount.getBalance());
+                    } else if (useroption.equals("3")) {
+                        break;
+                    }
                     break;
                 case 5:
-                    util.bankMenu("Display Account Information");
-                    System.out.println("Enter to continue");
-                    System.console().readLine();
+                    while (true) {
+                        System.out.println("\n>>>>>>>>>>>>>>>>>>>> Display Account Info <<<<<<<<<<<<<<<<<<<<");
+                        System.out.println("1. Checking Account ");
+                        System.out.println("2. Saving Account ");
+                        System.out.println("3. Back ");
+                        System.out.print("=> Choose an option: ");
+                        useroption = scanner.nextLine();
+                        if(useroption.matches("^[1-3]$")) {
+                            if (useroption.equals("3")) break;
+                            if (useroption.equals("1")) {
+                                System.out.println("Checking Account Info:");
+                                System.out.println("Name: " + checkingAcc.getUserName());
+                                System.out.println("Age: " + checkingAcc.getUserAge());
+                                System.out.println("Gender: " + checkingAcc.getUserGender());
+                                System.out.println("Phone: " + checkingAcc.getUserPhoneNumber());
+                                System.out.println("Balance: " + checkingAcc.getBalance());
+                            } else {
+                                System.out.println("Saving Account Info:");
+                                System.out.println("Name: " + savingAccount.getUserName());
+                                System.out.println("Age: " + savingAccount.getUserAge());
+                                System.out.println("Gender: " + savingAccount.getUserGender());
+                                System.out.println("Phone: " + savingAccount.getUserPhoneNumber());
+                                System.out.println("Balance: " + savingAccount.getBalance());
+                            }
+                        } else {
+                            System.out.println("Invalid option");
+                        }
+                    }
                     break;
                 case 6:
-                    util.bankMenu("Delete Account");
-                    System.out.println("Enter to continue");
-                    System.console().readLine();
+                    while (true) {
+                        System.out.println("\n>>>>>>>>>>>>>>>>>>>> Delete Account <<<<<<<<<<<<<<<<<<<<");
+                        System.out.println("1. Checking Account ");
+                        System.out.println("2. Saving Account ");
+                        System.out.println("3. Back ");
+                        System.out.print("=> Choose an option: ");
+                        useroption = scanner.nextLine();
+                        if(useroption.matches("^[1-3]$")) {
+                            if (useroption.equals("3")) break;
+                            if (useroption.equals("1")) {
+                                checkingAcc.setUserName(null);
+                                checkingAcc.setUserAge(null);
+                                checkingAcc.setUserGender(null);
+                                checkingAcc.setUserPhoneNumber(null);
+                                checkingAcc.setBalance(0);
+                                System.out.println("Checking account deleted.");
+                            } else {
+                                savingAccount.setUserName(null);
+                                savingAccount.setUserAge(null);
+                                savingAccount.setUserGender(null);
+                                savingAccount.setUserPhoneNumber(null);
+                                savingAccount.setBalance(0);
+                                System.out.println("Saving account deleted.");
+                            }
+                        } else {
+                            System.out.println("Invalid option");
+                        }
+                    }
                     break;
                 case 7:
                     System.out.println("Thank you for using");

@@ -13,17 +13,23 @@ public class SavingAccount implements Account {
     @Override
     public void withdraw(double amount) {
         if (amount > balance) {
-            System.out.println("Insufficient funds! Cannot withdraw.");
+            System.out.println("Cannot withdraw.");
         } else {
             balance -= amount;
-            System.out.println("Withdrawal successful. New balance: " + balance);
         }
     }
 
 
     @Override
     public void transfer(double amount, Account targetAccount) {
-
+        if(amount > balance){
+            System.out.println("Cannot Transfer.");
+        }else {
+            this.withdraw(amount);
+            targetAccount.deposit(amount);
+            System.out.println("Transfer successfully");
+            System.out.println("Total balance remaining: " + this.balance);
+        }
     }
 
     @Override
